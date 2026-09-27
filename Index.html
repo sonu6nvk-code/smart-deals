@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartDeals - Price Comparison</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
+        }
+        body {
+            background-color: #fcfcfc;
+            color: #111;
+        }
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #eaeaea;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        header h1 {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+        .header-right {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .search-bar {
+            padding: 10px 18px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 30px;
+            outline: none;
+            font-size: 14px;
+        }
+        .login-btn {
+            background-color: #000;
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+        }
+        .container {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .product-card {
+            background-color: #ffffff;
+            border: 1px solid #eaeaea;
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .badge {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 5px 10px;
+            font-size: 11px;
+            font-weight: 700;
+            border-radius: 4px;
+            align-self: flex-start;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        .product-title {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            font-size: 13px;
+        }
+        .price-table th, .price-table td {
+            border: 1px solid #eaeaea;
+            padding: 8px;
+            text-align: left;
+        }
+        .price-table th {
+            background-color: #f4f4f4;
+            font-weight: 600;
+        }
+        .buy-btn {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 12px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 6px;
+            font-size: 13px;
+            display: block;
+        }
+        /* Login Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            width: 320px;
+            text-align: center;
+        }
+        .social-btn {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #000;
+            background: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .social-btn:hover {
+            background: #000;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>SmartDeals.</h1>
+        <div class="header-right">
+            <input type="text" class="search-bar" placeholder="Search gadgets...">
+            <button class="login-btn" onclick="openModal()">Login / Signup</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="product-grid">
+            
+            <!-- प्रोडक्ट 1 -->
+            <div class="product-card">
+                <div class="badge">🔥 Biggest Drop</div>
+                <h2 class="product-title">Amazon Echo Dot (4th Gen)</h2>
+                <table class="price-table">
+                    <tr><th>Platform</th><th>Price</th></tr>
+                    <tr><td><b>Amazon</b></td><td><b>₹2,499</b></td></tr>
+                    <tr><td>Flipkart</td><td>₹2,599</td></tr>
+                    <tr><td>Croma</td><td>₹2,699</td></tr>
+                </table>
+                <a href="#" class="buy-btn">Grab Best Deal</a>
+            </div>
+
+            <!-- प्रोडक्ट 2 -->
+            <div class="product-card">
+                <div class="badge">⭐ Best Seller</div>
+                <h2 class="product-title">Wipro Smart Bulb 9W</h2>
+                <table class="price-table">
+                    <tr><th>Platform</th><th>Price</th></tr>
+                    <tr><td><b>Flipkart</b></td><td><b>₹599</b></td></tr>
+                    <tr><td>Amazon</td><td>₹649</td></tr>
+                    <tr><td>JioMart</td><td>₹699</td></tr>
+                </table>
+                <a href="#" class="buy-btn">Grab Best Deal</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- लॉग इन पॉप-अप मोडल -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <h3>Login to SmartDeals</h3>
+            <p style="font-size:12px; color:#666; margin:10px 0;">Get instant price-drop alerts</p>
+            <button class="social-btn" onclick="alert('Google Login Clicked')">Continue with Google</button>
+            <button class="social-btn" onclick="alert('Yahoo Login Clicked')">Continue with Yahoo</button>
+            <button class="social-btn" onclick="alert('Apple Login Clicked')">Continue with Apple</button>
+            <button class="social-btn" onclick="alert('Facebook Login Clicked')">Continue with Facebook</button>
+            <br>
+            <button onclick="closeModal()" style="background:none; border:none; color:red; cursor:pointer; margin-top:10px;">Close</button>
+        </div>
+    </div>
+
+    <script>
+        function openModal() { document.getElementById('loginModal').style.display = 'flex'; }
+        function closeModal() { document.getElementById('loginModal').style.display = 'none'; }
+    </script>
+</body>
+</html>
